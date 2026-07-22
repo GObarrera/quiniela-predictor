@@ -27,10 +27,15 @@ jobs:
       - name: Actualizar datos y generar reportes
         run: python actualizar_y_predecir.py --reports-dir reports
 
-      - name: Commitear cambios (datos + reportes)
+      - name: Publicar la grilla en GitHub Pages (docs/index.html)
+        run: |
+          mkdir -p docs
+          cp reports/grilla_terminaciones.html docs/index.html
+
+      - name: Commitear cambios (datos + reportes + pagina)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/sorteos.csv reports/ errores.log
+          git add data/sorteos.csv reports/ errores.log docs/
           git diff --staged --quiet || git commit -m "Actualizacion automatica $(date -u +%F)"
           git push

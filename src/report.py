@@ -76,7 +76,7 @@ def _df_to_md(df: pd.DataFrame, digits: int) -> str:
     df = df.copy()
     if "numero" in df.columns:
         df["numero"] = df["numero"].apply(lambda n: str(int(n)).zfill(digits))
-    return df.to_string(index=False)
+    return df.to_markdown(index=False)
 
 
 def save_report(content: str, reports_dir: str | Path) -> Path:
