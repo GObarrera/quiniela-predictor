@@ -1,0 +1,6 @@
+pandas>=2.0
+scipy>=1.10
+requests>=2.30
+pdfplumber>=0.11
+scikit-learn>=1.5
+fpdf2>=2.8

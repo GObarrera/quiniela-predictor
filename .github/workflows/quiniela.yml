@@ -1,0 +1,36 @@
+name: Quiniela - actualizar datos y generar reportes
+
+on:
+  schedule:
+    # 01:00 UTC = 22:00 en Argentina (una hora despues del sorteo Nocturna de las 21:00)
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repo
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Actualizar datos y generar reportes
+        run: python actualizar_y_predecir.py --reports-dir reports
+
+      - name: Commitear cambios (datos + reportes)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/sorteos.csv reports/ errores.log
+          git diff --staged --quiet || git commit -m "Actualizacion automatica $(date -u +%F)"
+          git push
