@@ -25,7 +25,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Actualizar datos y generar reportes
-        run: python actualizar_y_predecir.py --reports-dir reports
+        run: python actualizar_y_predecir.py --reports-dir reports --top 8
 
       - name: Publicar la grilla en GitHub Pages (docs/index.html)
         run: |
