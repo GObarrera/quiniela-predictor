@@ -1,6 +1,6 @@
 # Reporte Científico — Quiniela Nocturna Provincia
 
-Generado 2026-07-31 11:05:02 · 6200 sorteos analizados (2025-07-21 a 2026-07-30)
+Generado 2026-08-01 08:58:08 · 6220 sorteos analizados (2025-07-21 a 2026-07-31)
 
 **Restricción científica**: ninguna sección de este reporte afirma haber descubierto el mecanismo real del sorteo. Se distingue explícitamente entre correlación, coincidencia estadística, inferencia probabilística y evidencia reproducible.
 
@@ -8,48 +8,48 @@ Generado 2026-07-31 11:05:02 · 6200 sorteos analizados (2025-07-21 a 2026-07-30
 
 ### 1. ¿Los resultados parecen realmente aleatorios?
 - Se rechaza H0 de aleatoriedad de forma consolidada (método de Fisher).
-- Método de Fisher combinando 4 tests independientes: estadístico=28.3700, p-valor combinado=0.0004.
+- Método de Fisher combinando 4 tests independientes: estadístico=17.2570, p-valor combinado=0.0275.
 
 ### 2. ¿Existe evidencia estadística de patrones?
-- Chi-cuadrado (uniformidad): NO se rechaza H0 (estadístico=95.4516, p=0.5823). 99 grados de libertad.
-- Kolmogorov-Smirnov (uniformidad): Se RECHAZA H0 (estadístico=0.0174, p=0.0459). Aproximación continua sobre datos discretos (orientativa).
-- Anderson-Darling (uniformidad): NO se rechaza H0 (estadístico=1.4428, sin p-valor exacto (valor crítico tabulado)). Comparado contra valor crítico tabulado 2.492 (D'Agostino & Stephens 1986).
-- Wald-Wolfowitz (rachas): Se RECHAZA H0 (estadístico=-3.3201, p=0.0009). 2970 rachas observadas sobre 6200 valores (esperadas ~3100.7).
-- Test de independencia (X_t vs X_t-1): Se RECHAZA H0 (estadístico=106.8595, p=0.0287). Tabla 10x10, 81 gl, frecuencia esperada mínima 53.3 (válida).
-- Tras corrección por comparaciones múltiples (Benjamini-Hochberg): 1 de 5 tests siguen siendo significativos (detalle en el anexo). Con varios tests corridos a la vez, encontrar 1 test con p<0.05 por puro azar no es inusual; por eso se exige más de 1 test significativo TRAS la corrección antes de hablar de 'patrón'.
+- Chi-cuadrado (uniformidad): NO se rechaza H0 (estadístico=95.4341, p=0.5828). 99 grados de libertad.
+- Kolmogorov-Smirnov (uniformidad): Se RECHAZA H0 (estadístico=0.0177, p=0.0392). Aproximación continua sobre datos discretos (orientativa).
+- Anderson-Darling (uniformidad): NO se rechaza H0 (estadístico=1.4415, sin p-valor exacto (valor crítico tabulado)). Comparado contra valor crítico tabulado 2.492 (D'Agostino & Stephens 1986).
+- Wald-Wolfowitz (rachas): NO se rechaza H0 (estadístico=-1.4384, p=0.1503). 3054 rachas observadas sobre 6220 valores (esperadas ~3110.7).
+- Test de independencia (X_t vs X_t-1): NO se rechaza H0 (estadístico=102.7191, p=0.0520). Tabla 10x10, 81 gl, frecuencia esperada mínima 54.0 (válida).
+- Tras corrección por comparaciones múltiples (Benjamini-Hochberg): 0 de 5 tests siguen siendo significativos (detalle en el anexo). Con varios tests corridos a la vez, encontrar 1 test con p<0.05 por puro azar no es inusual; por eso se exige más de 1 test significativo TRAS la corrección antes de hablar de 'patrón'.
 
 ### 3. ¿Existe evidencia de un generador reproducible?
-- Score bayesiano heurístico de 'generador reproducible': 0.286 (intervalo de credibilidad 95% [0.0433, 0.6412]).
-- Espectro de Fourier: potencia relativa del pico dominante = 0.0024. Un proceso aleatorio real tiene un espectro aproximadamente plano (sin picos dominantes); este valor bajo no sugiere periodicidad.
-- Ciclos candidatos por autocorrelación: 3 lag(s) superan la banda de significancia de 50 evaluados — comparable a lo esperable por azar bajo comparaciones múltiples sin corregir.
+- Score bayesiano heurístico de 'generador reproducible': 0.143 (intervalo de credibilidad 95% [0.0042, 0.4593]).
+- Espectro de Fourier: potencia relativa del pico dominante = 0.0032. Un proceso aleatorio real tiene un espectro aproximadamente plano (sin picos dominantes); este valor bajo no sugiere periodicidad.
+- Ciclos candidatos por autocorrelación: 4 lag(s) superan la banda de significancia de 50 evaluados — comparable a lo esperable por azar bajo comparaciones múltiples sin corregir.
 
 ### 4. ¿Puede inferirse parcialmente el mecanismo generador?
 No se simulan generadores específicos (Linear Congruential Generator, Mersenne Twister, Xorshift, PCG, Lagged Fibonacci, Blum Blum Shub) porque eso requeriría asumir semilla y parámetros arbitrarios, y el protocolo pide explícitamente evitar la fuerza bruta de semillas. Las propiedades que sí distinguirían un generador determinista simple de ruido real — autocorrelación, periodicidad espectral, dependencia entre sorteos consecutivos — ya se evaluaron en las preguntas 2 y 3 y no muestran evidencia robusta de estructura.
 
 ### 5. ¿Existe algún modelo que supere significativamente al azar?
-- Modelos de ML: OMITIDOS. Solo 1 test(s) siguen siendo significativos tras corregir por comparaciones múltiples (se requiere más de 1). No corresponde entrenar modelos de ML: hacerlo forzaría una señal que los datos no muestran de forma robusta. Esta sección se documenta como OMITIDA de forma explícita, en vez de mostrar un resultado forzado.
-- Backtesting walk-forward + bootstrap (100,000 remuestreos sobre 6170 sorteos evaluados): tasa de acierto del ranking heurístico top-8 = 0.0818, vs control aleatorio simulado = 0.0737 (valor teórico de azar puro = 0.0800).
-- Diferencia heurístico-azar: 0.0081, IC 95% bootstrap [-0.0015, 0.0177] — diferencia NO significativa (el intervalo incluye el cero).
+- Modelos de ML: OMITIDOS. Solo 0 test(s) siguen siendo significativos tras corregir por comparaciones múltiples (se requiere más de 1). No corresponde entrenar modelos de ML: hacerlo forzaría una señal que los datos no muestran de forma robusta. Esta sección se documenta como OMITIDA de forma explícita, en vez de mostrar un resultado forzado.
+- Backtesting walk-forward + bootstrap (100,000 remuestreos sobre 6190 sorteos evaluados): tasa de acierto del ranking heurístico top-8 = 0.0819, vs control aleatorio simulado = 0.0750 (valor teórico de azar puro = 0.0800).
+- Diferencia heurístico-azar: 0.0070, IC 95% bootstrap [-0.0026, 0.0165] — diferencia NO significativa (el intervalo incluye el cero).
 
 ## Conclusión
-El método de Fisher combinado (sin corregir) dio p=0.0004, y 3 de 5 tests individuales muestran p<0.05 sin corregir; tras corregir por comparaciones múltiples (Benjamini-Hochberg), solo 1 sigue siendo significativo. Encontrar 1-2 tests marginalmente significativos de 5 corridos es exactamente lo esperable por puro azar (con 5 tests al 5%, ~23% de probabilidad de al menos un falso positivo), y no sobrevive a la corrección adecuada. El backtesting + bootstrap tampoco encuentra una ventaja predictiva significativa. En conjunto, los datos son compatibles con un proceso aleatorio. Ningún ranking, heurística o modelo evaluado en este reporte demostró una ventaja significativa sobre el azar puro. Los números 'calientes', 'fríos' o de 'predicción' que se muestran en el dashboard diario deben tomarse como curiosidad estadística descriptiva, sin valor predictivo real.
+El método de Fisher combinado (sin corregir) dio p=0.0275, y 1 de 5 tests individuales muestran p<0.05 sin corregir; tras corregir por comparaciones múltiples (Benjamini-Hochberg), solo 0 sigue siendo significativo. Encontrar 1-2 tests marginalmente significativos de 5 corridos es exactamente lo esperable por puro azar (con 5 tests al 5%, ~23% de probabilidad de al menos un falso positivo), y no sobrevive a la corrección adecuada. El backtesting + bootstrap tampoco encuentra una ventaja predictiva significativa. En conjunto, los datos son compatibles con un proceso aleatorio. Ningún ranking, heurística o modelo evaluado en este reporte demostró una ventaja significativa sobre el azar puro. Los números 'calientes', 'fríos' o de 'predicción' que se muestran en el dashboard diario deben tomarse como curiosidad estadística descriptiva, sin valor predictivo real.
 
 ## Anexo A: detalle de todos los tests de aleatoriedad (Fase 3)
-- Chi-cuadrado (uniformidad): NO se rechaza H0 (estadístico=95.4516, p=0.5823). 99 grados de libertad.
-- Kolmogorov-Smirnov (uniformidad): Se RECHAZA H0 (estadístico=0.0174, p=0.0459). Aproximación continua sobre datos discretos (orientativa).
-- Anderson-Darling (uniformidad): NO se rechaza H0 (estadístico=1.4428, sin p-valor exacto (valor crítico tabulado)). Comparado contra valor crítico tabulado 2.492 (D'Agostino & Stephens 1986).
-- Wald-Wolfowitz (rachas): Se RECHAZA H0 (estadístico=-3.3201, p=0.0009). 2970 rachas observadas sobre 6200 valores (esperadas ~3100.7).
-- Test de independencia (X_t vs X_t-1): Se RECHAZA H0 (estadístico=106.8595, p=0.0287). Tabla 10x10, 81 gl, frecuencia esperada mínima 53.3 (válida).
+- Chi-cuadrado (uniformidad): NO se rechaza H0 (estadístico=95.4341, p=0.5828). 99 grados de libertad.
+- Kolmogorov-Smirnov (uniformidad): Se RECHAZA H0 (estadístico=0.0177, p=0.0392). Aproximación continua sobre datos discretos (orientativa).
+- Anderson-Darling (uniformidad): NO se rechaza H0 (estadístico=1.4415, sin p-valor exacto (valor crítico tabulado)). Comparado contra valor crítico tabulado 2.492 (D'Agostino & Stephens 1986).
+- Wald-Wolfowitz (rachas): NO se rechaza H0 (estadístico=-1.4384, p=0.1503). 3054 rachas observadas sobre 6220 valores (esperadas ~3110.7).
+- Test de independencia (X_t vs X_t-1): NO se rechaza H0 (estadístico=102.7191, p=0.0520). Tabla 10x10, 81 gl, frecuencia esperada mínima 54.0 (válida).
 
 ## Anexo B: corrección de comparaciones múltiples (Benjamini-Hochberg)
-- Wald-Wolfowitz (rachas): p=0.0009, umbral BH=0.0125, significativo tras corrección: sí.
-- Test de independencia (X_t vs X_t-1): p=0.0287, umbral BH=0.0250, significativo tras corrección: no.
-- Kolmogorov-Smirnov (uniformidad): p=0.0459, umbral BH=0.0375, significativo tras corrección: no.
-- Chi-cuadrado (uniformidad): p=0.5823, umbral BH=0.0500, significativo tras corrección: no.
+- Kolmogorov-Smirnov (uniformidad): p=0.0392, umbral BH=0.0125, significativo tras corrección: no.
+- Test de independencia (X_t vs X_t-1): p=0.0520, umbral BH=0.0250, significativo tras corrección: no.
+- Wald-Wolfowitz (rachas): p=0.1503, umbral BH=0.0375, significativo tras corrección: no.
+- Chi-cuadrado (uniformidad): p=0.5828, umbral BH=0.0500, significativo tras corrección: no.
 
 ## Anexo C: estadística descriptiva adicional (Fase 2)
-- Pares/impares: {'par': 0.4927, 'impar': 0.5073}
-- Altos/bajos: {'bajo': 0.5026, 'alto': 0.4974}
+- Pares/impares: {'par': 0.4918, 'impar': 0.5082}
+- Altos/bajos: {'bajo': 0.5031, 'alto': 0.4969}
 - Entropía de Shannon: 6.6327 bits (máxima posible 6.6439 bits, eficiencia 0.9983). Una eficiencia cercana a 1.0 indica que la distribución observada está cerca de la máxima incertidumbre posible (uniforme).
-- ADVERTENCIA (entropía condicional): Tabla conjunta de 10000 celdas con solo 6199 transiciones observadas: la mayoría de las celdas tiene 0 o 1 observaciones. La entropía condicional empírica está sesgada hacia abajo en este régimen (subestima la incertidumbre real) y NO debe interpretarse como evidencia de dependencia. Usar el test de independencia (chi-cuadrado sobre bins) para esa conclusión, no este número.
-- Distancia de la matriz de transición de Markov a independencia total: 0.5367 (0 = coincide con independencia perfecta). Esta métrica también puede estar inflada por dispersión de la tabla si la muestra es chica; ver el test de independencia (Fase 3) como criterio principal, no este número aislado.
+- ADVERTENCIA (entropía condicional): Tabla conjunta de 10000 celdas con solo 6219 transiciones observadas: la mayoría de las celdas tiene 0 o 1 observaciones. La entropía condicional empírica está sesgada hacia abajo en este régimen (subestima la incertidumbre real) y NO debe interpretarse como evidencia de dependencia. Usar el test de independencia (chi-cuadrado sobre bins) para esa conclusión, no este número.
+- Distancia de la matriz de transición de Markov a independencia total: 0.5334 (0 = coincide con independencia perfecta). Esta métrica también puede estar inflada por dispersión de la tabla si la muestra es chica; ver el test de independencia (Fase 3) como criterio principal, no este número aislado.
