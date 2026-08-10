@@ -40,3 +40,4 @@
 2026-08-06 10:20:26,211 - 2026-08-06 - No se encontro seccion 'Nocturna' en la respuesta - url=https://loteria.gba.gob.ar/api-loteria/extractos/2026-08-06
 2026-08-07 05:59:11,928 - 2026-08-07 - No se encontro seccion 'Nocturna' en la respuesta - url=https://loteria.gba.gob.ar/api-loteria/extractos/2026-08-07
 2026-08-08 04:37:16,903 - 2026-08-08 - No se encontro seccion 'Nocturna' en la respuesta - url=https://loteria.gba.gob.ar/api-loteria/extractos/2026-08-08
+2026-08-10 05:59:11,000 - 2026-08-10 - ERROR DE CONEXION - HTTPSConnectionPool(host='loteria.gba.gob.ar', port=443): Max retries exceeded with url: /api-loteria/extractos/2026-08-10 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)'))) - url=https://loteria.gba.gob.ar/api-loteria/extractos/2026-08-10
