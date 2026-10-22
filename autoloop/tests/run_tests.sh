@@ -20,7 +20,7 @@ fixture() {  # crea un repo temporal y deja su ruta en $R
     mkdir -p autoloop/tests
     cp "$LOOP_SRC"/{autoloop.sh,tracker.py,redact.py,prompt.md,config.env} autoloop/
     cp "$LOOP_SRC"/tests/mock_claude.sh autoloop/tests/
-    printf 'autoloop/logs/\nautoloop/STOP\nautoloop/state/autoloop.lock*\nautoloop/state/autoloop.pid\nautoloop/state/current.json\nautoloop/state/last_result.json\nautoloop/state/mock_calls.log\n__pycache__/\n' > .gitignore
+    printf 'autoloop/logs/\nautoloop/STOP\nautoloop/state/autoloop.lock*\nautoloop/state/autoloop.pid\nautoloop/state/current.json\nautoloop/state/last_result.json\nautoloop/state/mock_calls.log\nautoloop/state/mock_args.log\n__pycache__/\n' > .gitignore
     printf '# Estado\n\nNotas.\n' > PROJECT_STATUS.md
     printf '# Roadmap\n' > ROADMAP.md
     printf '# Bloqueos\n' > BLOCKERS.md
@@ -65,6 +65,8 @@ check "registro tiene campos obligatorios"     "$PY" -c 'import json,sys
 d=json.loads(open(sys.argv[1]).readline())
 need={"iteracion","inicio","tarea","archivos","pruebas","resultado","errores","costo_usd","siguiente","estado_proyecto","duracion_s"}
 sys.exit(0 if need<=d.keys() and d["resultado"]=="exitosa" and d["siguiente"]=="B" else 1)' "$R/autoloop/state/iterations.jsonl"
+check "reglas con espacios llegan como un solo argumento" bash -c "grep -qx 'Bash(git push:\\*)' '$R/autoloop/state/mock_args.log' && grep -qx 'Bash(git status:\\*)' '$R/autoloop/state/mock_args.log' && grep -qx 'mcp__\\*' '$R/autoloop/state/mock_args.log' && ! grep -qx 'Bash(git' '$R/autoloop/state/mock_args.log'"
+check "usa acceptEdits y tope por iteración"   bash -c "grep -qx acceptEdits '$R/autoloop/state/mock_args.log' && grep -qx -- --max-budget-usd '$R/autoloop/state/mock_args.log'"
 MAX_ITERATIONS=5 loop start --mock; rc=$?
 check "re-ejecutar un proyecto terminado no duplica trabajo" eq "$rc:$(nrec)" "0:2"
 

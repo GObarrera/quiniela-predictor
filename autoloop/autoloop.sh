@@ -69,13 +69,14 @@ cmd_stop() {
 }
 
 cmd_status() {
-  if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-    echo "Proceso: CORRIENDO (pid $(cat "$PID_FILE"))"
-  else
-    echo "Proceso: detenido"
-  fi
+  local running=0
+  [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null && running=1
+  if [ "$running" = 1 ]; then echo "Proceso: CORRIENDO (pid $(cat "$PID_FILE"))"; else echo "Proceso: detenido"; fi
   [ -f "$STOP_FILE" ] && echo "Hay un pedido de detención pendiente ($STOP_FILE). Usá 'resume' para seguir."
-  [ -f "$CURRENT_FILE" ] && echo "Iteración interrumpida pendiente de recuperar: $(cat "$CURRENT_FILE")"
+  if [ -f "$CURRENT_FILE" ]; then
+    if [ "$running" = 1 ]; then echo "Iteración en curso: $(cat "$CURRENT_FILE")"
+    else echo "Iteración interrumpida (se recupera al próximo start/resume): $(cat "$CURRENT_FILE")"; fi
+  fi
   tracker report | sed -n '3,200p'
 }
 
@@ -281,7 +282,9 @@ Evitá repetir el mismo enfoque."
                 --no-session-persistence)
   [ -n "$CLAUDE_MODEL" ] && cmd+=(--model "$CLAUDE_MODEL")
   # shellcheck disable=SC2206
-  set -f; local -a allowed=($ALLOWED_TOOLS) disallowed=($DISALLOWED_TOOLS); set +f
+  local -a allowed disallowed  # listas separadas por coma: las reglas contienen espacios
+  IFS=',' read -r -a allowed <<< "$ALLOWED_TOOLS"
+  IFS=',' read -r -a disallowed <<< "$DISALLOWED_TOOLS"
   [ "${#allowed[@]}" -gt 0 ] && cmd+=(--allowedTools "${allowed[@]}")
   [ "${#disallowed[@]}" -gt 0 ] && cmd+=(--disallowedTools "${disallowed[@]}")
 
@@ -433,7 +436,7 @@ cmd_start() {
   case "$MAX_ITERATIONS" in ''|*[!0-9]*|0) echo "MAX_ITERATIONS debe ser un entero > 0" >&2; exit 1 ;; esac
   if [ "$MOCK" = 1 ]; then CLAUDE_BIN="$LOOP_DIR/tests/mock_claude.sh"; TEST_MODE=1; fi
   if [ "$TEST_MODE" = 1 ]; then
-    DISALLOWED_TOOLS="$DISALLOWED_TOOLS mcp__*"
+    DISALLOWED_TOOLS="$DISALLOWED_TOOLS,mcp__*"
   fi
   if [ "$PERMISSION_MODE" = bypassPermissions ] && [ "${AUTOLOOP_ALLOW_BYPASS:-0}" != 1 ]; then
     echo "PERMISSION_MODE=bypassPermissions requiere AUTOLOOP_ALLOW_BYPASS=1 explícito (y un entorno aislado)." >&2; exit 1

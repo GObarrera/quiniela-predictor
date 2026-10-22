@@ -24,7 +24,7 @@ proceso muerto. Si Python se llama `py`, exportá `PYTHON=py`.
    exportar `ANTHROPIC_API_KEY` en la sesión. **Nunca** pongas la clave en `config.env` ni en el repo.
 2. Python 3.10+ y git en el `PATH`.
 3. Desde la raíz del repo: `chmod +x autoloop/*.sh autoloop/tests/*.sh`
-4. Verificar: `autoloop/autoloop.sh test` (36 pruebas, sin Claude ni red, ~30 s).
+4. Verificar: `autoloop/autoloop.sh test` (38 pruebas, sin Claude ni red, ~30 s).
 
 ## Archivos
 
@@ -40,6 +40,7 @@ proceso muerto. Si Python se llama `py`, exportá `PYTHON=py`.
 | `autoloop/redact.py` | Oculta claves, tokens, emails y teléfonos antes de escribir cualquier registro. |
 | `autoloop/state/iterations.jsonl` | Historial estructurado (versionado). |
 | `autoloop/state/attempts.json` | Intentos fallidos por tarea (versionado). |
+| `autoloop/PRUEBA_REAL.md` | Informe de la ejecución de prueba real con Claude. |
 | `autoloop/INFORME.md` | Informe de estado/bloqueos al cierre de cada corrida (versionado). |
 | `autoloop/logs/` | Salida cruda redactada de cada iteración, prompts y pruebas (no versionado). |
 

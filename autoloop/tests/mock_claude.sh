@@ -8,6 +8,7 @@ var="MOCK_BEHAVIOR_$(printf '%s' "$task" | tr -c 'A-Za-z0-9' '_')"
 behavior="${!var:-${MOCK_BEHAVIOR:-success}}"
 PY="${PYTHON:-python3}"
 echo "$task $behavior" >> autoloop/state/mock_calls.log
+printf '%s\n' "${@:3}" > autoloop/state/mock_args.log   # argumentos (sin el prompt) para verificarlos
 
 result() { printf '{"tarea":"%s","estado":"%s","archivos":[],"pruebas":["mock"],"errores":[%s],"siguiente":"-"}\n' "$task" "$1" "${2:-}" > autoloop/state/last_result.json; }
 set_row() {  # set_row <estado> <prueba>

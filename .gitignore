@@ -9,3 +9,4 @@ autoloop/state/autoloop.pid
 autoloop/state/current.json
 autoloop/state/last_result.json*
 autoloop/state/mock_calls.log
+autoloop/state/mock_args.log

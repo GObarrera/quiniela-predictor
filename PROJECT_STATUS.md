@@ -8,7 +8,8 @@
 
 ## Notas de sesiones
 
-- 2026-10-22: implementado y probado el loop (36 pruebas en `autoloop/tests/run_tests.sh`).
+- 2026-10-22: implementado y probado el loop (38 pruebas en `autoloop/tests/run_tests.sh`).
+- 2026-10-22: ejecución real controlada (2 iteraciones, US$ 0.27): QP-01 completada; el loop se detuvo por B-001. Ver `autoloop/PRUEBA_REAL.md`.
 
 ## Estado autogenerado
 

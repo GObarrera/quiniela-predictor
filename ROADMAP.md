@@ -15,4 +15,4 @@
 5. INM-09 pruebas E2E · INM-10 documentación
 
 ## Mantenimiento del proyecto actual (quiniela-predictor)
-- [ ] QP-01 pruebas unitarias de `src/terminaciones.py` (tarea de demostración del loop).
+- [x] QP-01 pruebas unitarias de `src/terminaciones.py` (completada por el loop en la iteración 2).
