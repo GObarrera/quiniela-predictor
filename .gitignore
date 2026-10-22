@@ -1,3 +1,12 @@
 .venv/
 __pycache__/
 *.pyc
+# Loop autónomo: archivos efímeros (el historial iterations.jsonl y attempts.json SÍ se versionan)
+autoloop/logs/
+autoloop/STOP
+autoloop/state/autoloop.lock*
+autoloop/state/autoloop.pid
+autoloop/state/current.json
+autoloop/state/last_result.json*
+autoloop/state/mock_calls.log
+autoloop/state/mock_args.log
