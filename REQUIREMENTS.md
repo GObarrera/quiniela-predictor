@@ -17,7 +17,7 @@ Fuente de verdad del loop autónomo (`autoloop/`). El script lee **solo la tabla
 | LOOP-04 | P0 | Sí | probado | LOOP-01 | `bash autoloop/tests/run_tests.sh` | Control de finalización verificable e informe de bloqueos (autoloop/tracker.py) |
 | LOOP-05 | P0 | Sí | probado | LOOP-01 | `bash autoloop/tests/run_tests.sh` | Historial estructurado de iteraciones (autoloop/state/iterations.jsonl) con redacción de claves y datos personales |
 | LOOP-06 | P0 | Sí | probado | LOOP-01 | `bash autoloop/tests/run_tests.sh` | Inicio, detención (archivo STOP o señal) y reanudación documentados; modo de prueba sin acciones externas (--mock / --test-mode) |
-| QP-01 | P1 | No | pendiente | - | - | Agregar pruebas unitarias con unittest en tests/test_terminaciones.py para src/terminaciones.py (dataframe_terminaciones: últimos 2 dígitos, no modifica el original). Solo pandas, sin red |
+| QP-01 | P1 | No | probado | - | `python3 -m unittest discover -s tests -q` | Agregar pruebas unitarias con unittest en tests/test_terminaciones.py para src/terminaciones.py (dataframe_terminaciones: últimos 2 dígitos, no modifica el original). Solo pandas, sin red |
 | INM-00 | P0 | Sí | bloqueado | - | - | Especificación del buscador inmobiliario nacional (secciones 1 a 16 del pedido) y decisión del repositorio donde se desarrolla. Ver BLOCKERS.md B-001 |
 | INM-01 | P0 | Sí | pendiente | INM-00 | - | Buscador de propiedades (filtros, resultados, ficha) |
 | INM-02 | P0 | Sí | pendiente | INM-00 | - | Recepción/carga de propiedades por anunciantes |
