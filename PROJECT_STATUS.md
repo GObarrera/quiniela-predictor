@@ -38,4 +38,12 @@ El bloque siguiente lo reescribe `autoloop/tracker.py render` en cada iteración
 | INM-10 | Sí | depende de INM-01 |
 
 Detalle de cada bloqueo y la acción requerida: `BLOCKERS.md`.
+
+## Últimas iteraciones
+
+Costo estimado acumulado: US$ 0.12
+
+| # | Fecha | Tarea | Resultado | Costo US$ |
+|---|---|---|---|---|
+| 1 | 2026-10-22T00:25 | QP-01 | fallida | 0.12 |
 <!-- autoloop:fin -->
