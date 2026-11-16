@@ -1,6 +1,6 @@
 # Reporte Científico — Quiniela Nocturna Provincia
 
-Generado 2026-11-15 07:17:55 · 8040 sorteos analizados (2025-07-21 a 2026-11-14)
+Generado 2026-11-16 07:24:18 · 8040 sorteos analizados (2025-07-21 a 2026-11-14)
 
 **Restricción científica**: ninguna sección de este reporte afirma haber descubierto el mecanismo real del sorteo. Se distingue explícitamente entre correlación, coincidencia estadística, inferencia probabilística y evidencia reproducible.
 
